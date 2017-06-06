@@ -1,16 +1,45 @@
 package fr.unilim.iut.spaceinvaders;
 
+import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
+import fr.unilim.iut.spaceinvaders.moteurjeu.Jeu;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.MissileException;
 
-public class SpaceInvaders {
+public class SpaceInvaders implements Jeu {
 
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
 	Missile missile;
 	Envahisseur envahisseur;
+	
+	  @Override
+      public void evoluer(Commande commandeUser) {
+		
+         if (commandeUser.gauche) {
+             deplacerVaisseauVersLaGauche();
+         }
+		
+        if (commandeUser.droite) {
+	        deplacerVaisseauVersLaDroite();
+        }
+
+      }
+	   public void initialiserJeu() {
+		    Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
+		    Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+		    positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, 10);
+	    }
+  
+     @Override
+     public boolean etreFini() {
+        return false; 
+     }
+
+     public Vaisseau recupererVaisseau() {
+ 		return this.vaisseau;
+ 	}
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;

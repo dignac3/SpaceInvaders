@@ -26,8 +26,4 @@ public class Vaisseau extends Sprite {
 		return new Position(abscisseOrigineMissile, ordonneeeOrigineMissile);
 	}
 
-	public int hauteur() {
-		// TODO Auto-generated method stub
-		return dimension.hauteur();
-	}
 }
